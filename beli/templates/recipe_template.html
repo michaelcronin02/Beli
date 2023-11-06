@@ -1,9 +1,9 @@
-<div class="message">
-    <div class="title">{{ recipe.title}}</div>
+<div class="Recipe">
+    <span class="title">{{ recipe.title}}</span>
+    <span class="author">By: {{ recipe.user.name }}</span>
     <div class="metadata">
-        <span class="description">{{ recipe.description }}</span>
-        <span class="author">{{ recipe.user.name }}</span>
-        <span class="servings">{{ recipe.servings }}</span>
-        <span class="cooktime">{{ recipe.cooktime }}</span>
+        <div class="servings">Servings: {{ recipe.servings }}</div>
+        <div class="cooktime">Cook Time: {{ recipe.cooktime }}</div>
+        <div class="description">{{ recipe.description }}</div>
     </div>
 </div>
