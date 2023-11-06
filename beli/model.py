@@ -1,10 +1,11 @@
-class Message:
-    def __init__(self, message_id, user, text, timestamp):
-        self.message_id = message_id
+class Recipe:
+    def __init__(self, recipe_id, title, description, user, servings, cooktime):
+        self.recipe_id = recipe_id
+        self.title = title
+        self.description = description
         self.user = user
-        self.text = text
-        self.timestamp = timestamp
-
+        self.servings = servings
+        self.cooktime = cooktime
 
 class User:
     def __init__(self, user_id, email, name):

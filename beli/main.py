@@ -13,11 +13,11 @@ bp = Blueprint("main", __name__)
 def index():
     user = model.User(1, "mary@example.com", "mary")
     posts = [
-        model.Message(
-            1, user, "Test post", datetime.datetime.now(dateutil.tz.tzlocal())
+        model.Recipe(
+            1, "Cheese", "its just cheese", user, 4, 15
         ),
-        model.Message(
-            2, user, "Another post", datetime.datetime.now(dateutil.tz.tzlocal())
+        model.Recipe(
+            2, "Jamon", "Jamon Iberico", user, 1, 10
         ),
     ]
     return render_template("main/index.html", recipes=posts)
