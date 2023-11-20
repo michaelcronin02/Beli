@@ -43,3 +43,8 @@ h2, strong {
 .new_post {
     margin-top: 100px;
 }
+
+.title {
+    font-size: 200%;
+    font-weight: bold;
+}
