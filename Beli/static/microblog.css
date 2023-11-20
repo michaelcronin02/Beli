@@ -1,3 +1,45 @@
 body {
     background-color: beige;
+    text-align: left;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2, strong {
+    color: rgb(11, 127, 166);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+}
+
+.image {
+    border: 2px solid white;
+}
+
+.posttext {
+    font-size: large;
+    font-weight: bold;
+    color: #008000;
+    }
+
+.author {
+    font-style: italic;
+}
+
+.date {
+    text-align: right;
+    color: gray;
+    font-size: small;
+}
+
+.message {
+    outline-style: solid;
+    outline-color: rgb(11, 127, 166);
+    padding: 25px;
+    margin: 25px;
+}
+
+.new_post {
+    margin-top: 100px;
 }
