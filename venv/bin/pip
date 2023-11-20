@@ -1,4 +1,6 @@
-#!/Users/michaelcronin/Desktop/WebApps/beli-app/venv/bin/python3.11
+#!/bin/sh
+'''exec' "/var/home/lab/alum1/05/21/387/Lab 3/microblog-app/venv/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys

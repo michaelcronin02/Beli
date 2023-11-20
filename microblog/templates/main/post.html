@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section>
+        <h2>Post</h2> 
+        {% include 'post_template.html' %}
+    </section>
+    <section>
+        <h2>Post Responses</h2>
+        {% for response in post.responses %}
+            <div class="text">{{ response.text}}</div>
+            <span class="author">{{ response.user.name }}</span>
+            <span class="date">{{ response.timestamp }}</span>
+        {% endfor %} 
+    </section>
+    <section>
+        <h2>Respond to this post:</h2>
+        <form action="{{ url_for('main.new_post') }}" method="post">
+            <textarea name="text"></textarea>
+            <input type="hidden" name="response_to" value="{{ post.id }}">
+            <div><input type="submit" value="Respond!"/></div>
+        </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,9 @@
+<div class="message">
+    <div class="text">{{ post.text}}</div>
+    <div class="metadata">
+        <span class="author">
+            <a href="{{ url_for('main.userProfile', user_id=post.user.id) }}">{{ post.user.name }}</a>
+        </span>
+        <span class="date">{{ post.timestamp }}</span>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="messages">
+    {% for post in posts %}
+        {% include 'post_template.html' %}
+        <a href="{{ url_for('main.post', message_id=post.id) }}">View Post</a>
+    {% endfor %}
+</div>
