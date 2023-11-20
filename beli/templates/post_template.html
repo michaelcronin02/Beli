@@ -1,7 +1,9 @@
 <div class="message">
-    <div class="text">{{ post.text}}</div>
+    <span class="title">{{ post.title}}</span>
+    <span class="author">By: {{ post.user.name }}</span>
     <div class="metadata">
-        <span class="author">{{ post.user.name }}</span>
-        <span class="date">{{ post.timestamp }}</span>
+        <div class="servings">Servings: {{ post.servings }}</div>
+        <div class="cooktime">Cook Time: {{ post.cook_time }}</div>
+        <div class="description">{{ post.description }}</div>
     </div>
 </div>
