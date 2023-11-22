@@ -9,7 +9,7 @@ class FollowingAssociation(db.Model):
         db.Integer, db.ForeignKey("user.id"), primary_key=True, nullable=False
     )
 
-class User(db.Model):
+class User(flask_login.UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(128), unique=True, nullable=False)
     name = db.Column(db.String(64), nullable=False)

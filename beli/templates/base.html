@@ -10,9 +10,18 @@
         <header>
             <h1>Microblogging</h1>
             <a href="{{ url_for('main.index') }}">Home</a>
+
+            {% if current_user.is_authenticated: %}
+                <div>User: {{current_user.name}}</div>
+                <a href="{{ url_for('auth.log_out') }}">Logout</a>
+            {% endif %}
         </header>
         <section class="content">
             {% block content %}{% endblock %}
+        </section>
+
+        <section class="userProfile">
+           {% block prof %}{% endblock %}
         </section>
         <footer><small>Developed for Web applications</small></footer>
     </body>
