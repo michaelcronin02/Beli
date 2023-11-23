@@ -1,9 +1,15 @@
 <div class="message">
-    <span class="title">{{ post.title}}</span>
-    <span class="author">By: {{ post.user.name }}</span>
-    <div class="metadata">
-        <div class="servings">Servings: {{ post.servings }}</div>
-        <div class="cooktime">Cook Time: {{ post.cook_time }}</div>
-        <div class="description">{{ post.description }}</div>
-    </div>
+        <span>
+            <div class="title">{{ post.title}}</div>
+            <div class="author">By: 
+                <a href="{{ url_for('main.userProfile', user_id=post.user.id) }}">{{ post.user.name }}</a>
+            </div>
+        </span>
+        <div class="metadata">
+            <div class="servings">Servings: {{ post.servings }}</div>
+            <div class="cooktime">Cook Time: {{ post.cook_time }}</div>
+        </div>
+    <span class="description">{{ post.description }}</span>
 </div>
+
+

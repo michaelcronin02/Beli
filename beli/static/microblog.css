@@ -35,10 +35,13 @@ h2, strong {
 
 .message {
     outline-style: solid;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     outline-color: rgb(11, 127, 166);
     padding: 25px;
     margin: 25px;
 }
+
 
 .new_post {
     margin-top: 100px;
@@ -48,3 +51,6 @@ h2, strong {
     font-size: 200%;
     font-weight: bold;
 }
+
+
+
