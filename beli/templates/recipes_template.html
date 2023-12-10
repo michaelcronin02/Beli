@@ -1,6 +1,5 @@
 <div class="messages">
     {% for recipe in recipes %}
         {% include 'recipe_template.html' %}
-        <a href="{{ url_for('main.recipe', recipe_id=recipe.id) }}">View Recipe</a>
     {% endfor %}
 </div>

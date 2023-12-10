@@ -3,17 +3,17 @@
 {% block content %}
     <section>
         <h2>Latest recipes from the people you follow</h2>
-        {% include 'posts_template.html' %}
+        {% include 'recipes_template.html' %}
     </section>
 
     <section>
         <h2>Make a new recipe!</h2>
-        <form action="{{ url_for('main.new_post') }}" method="post">
+        <form action="{{ url_for('main.new_recipe') }}" method="post">
             <div><textarea placeholder="Title" name="title"></textarea></div>
             <div><textarea placeholder="Description" name="description"></textarea></div>
             <div><textarea placeholder="Serving" name="servings"></textarea></div>
             <div><textarea placeholder="Cook Time" name="cook_time"></textarea></div>
-            <div><input type="submit" value="Post!"/></div>
+            <div><input type="submit" value="Publish!"/></div>
         </form>
     </section>
 {% endblock %}

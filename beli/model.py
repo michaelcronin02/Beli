@@ -1,7 +1,15 @@
 from . import db
 import flask_login
 
-class User(db.Model):
+class FollowingAssociation(db.Model):
+    follower_id = db.Column(
+        db.Integer, db.ForeignKey("user.id"), primary_key=True, nullable=False
+    )
+    followed_id = db.Column(
+        db.Integer, db.ForeignKey("user.id"), primary_key=True, nullable=False
+    )
+
+class User(flask_login.UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(128), unique=True, nullable=False)
     name = db.Column(db.String(64), nullable=False)
@@ -10,21 +18,37 @@ class User(db.Model):
     #photos = db.relationship('Photo', back_populates='user')
     #ratings = db.relationship('Rating', back_populates='user')
     #bookmarks = db.relationship('Bookmark', back_populates='user')
-    #photos = db.relationship('Photo', back_populates='user')
+    photos = db.relationship('Photo', back_populates='user')
+    following = db.relationship(
+        "User",
+        secondary=FollowingAssociation.__table__,
+        primaryjoin=FollowingAssociation.follower_id == id,
+        secondaryjoin=FollowingAssociation.followed_id == id,
+        back_populates="followers",
+    )
+    followers = db.relationship(
+        "User",
+        secondary=FollowingAssociation.__table__,
+        primaryjoin=FollowingAssociation.followed_id == id,
+        secondaryjoin=FollowingAssociation.follower_id == id,
+        back_populates="following",
+    )
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(512), nullable=False)
     description = db.Column(db.Text, nullable=False)
+    servings = db.Column(db.Integer, nullable=False)
+    cook_time = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', back_populates='recipes')
     #quantified_ingredients = db.relationship('QuantifiedIngredient', back_populates='recipe')
     #steps = db.relationship('Step', back_populates='recipe')
     #ratings = db.relationship('Rating', back_populates='recipe')
     #bookmarks = db.relationship('Bookmark', back_populates='recipe')
-    #photos = db.relationship('Photo', back_populates='recipe')
-
-'''class Ingredient(db.Model):
+    photos = db.relationship('Photo', back_populates='recipe')
+'''
+class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(512), nullable=False)
     quantified_ingredients = db.relationship('QuantifiedIngredient', back_populates='ingredient')
@@ -59,7 +83,7 @@ class Bookmarks(db.Model):
     recipe = db.relationship('Recipe', back_populates='bookmarks')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', back_populates='bookmarks')
-
+'''
 class Photo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     file_extension = db.Column(db.String(8), nullable=False)
@@ -67,4 +91,4 @@ class Photo(db.Model):
     recipe = db.relationship('Recipe', back_populates='photos')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', back_populates='photos')
-    '''
+ 

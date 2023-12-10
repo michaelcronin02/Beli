@@ -1,0 +1,13 @@
+<div class="recipe">
+    <span class="title"> 
+        <a href ="{{ url_for('main.recipe', recipe_id=recipe.id) }}"> {{ recipe.title}} </a>
+        </span>
+    <span class="author">By: 
+        <a href ="{{ url_for('main.userProfile', user_id=recipe.user.id) }}"> {{ recipe.user.name }}</a>
+      </span>
+    <div class="metadata">
+        <div class="servings">Servings: {{ recipe.servings }}</div>
+        <div class="cooktime">Cook Time: {{ recipe.cook_time }}</div>
+        <div class="description">{{ recipe.description }}</div>
+    </div>
+</div>

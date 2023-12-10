@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section>
+        <h2>Recipe</h2> 
+        {% include 'recipe_template.html' %}
+    </section>
+
+    {% if recipe.photos %}
+    <div>
+        {% for photo in recipe.photos %}
+            <img src="{{ url_for('static', filename='photos/photo-' ~ photo.id ~ '.' ~ photo.file_extension) }}" alt="photo">
+        {% endfor %}
+    </div>
+{% endif %}
+
+    <section>
+        <form action="{{ url_for('main.upload_photo') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="photo" accept="image/jpeg,image/png" required>
+                <input type="hidden" name="recipe_id" value="{{recipe.id}}">
+                <input type="submit" value="Post!"/>
+            </form>
+    </section>
+{% endblock %}

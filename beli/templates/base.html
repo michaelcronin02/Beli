@@ -2,13 +2,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Microblogging app</title>
+        <title>BELI</title>
         <link rel="stylesheet"
-              href="{{ url_for('static', filename='microblog.css') }}">
+              href="{{ url_for('static', filename='beli.css') }}">
     </head>
     <body>
         <header>
-            <h1>Microblogging</h1>
+            <h1>Recipes (BELI)</h1>
             <a href="{{ url_for('main.index') }}">Home</a>
 
             {% if current_user.is_authenticated: %}
@@ -23,6 +23,6 @@
         <section class="userProfile">
            {% block prof %}{% endblock %}
         </section>
-        <footer><small>Developed for Web applications</small></footer>
+        <footer><small>Developed for Web applications only by Michael Cronin</small></footer>
     </body>
 </html>
