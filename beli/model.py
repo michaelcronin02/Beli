@@ -7,10 +7,10 @@ class User(db.Model):
     name = db.Column(db.String(64), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     recipes = db.relationship('Recipe', back_populates='user')
-    photos = db.relationship('Photo', back_populates='user')
-    ratings = db.relationship('Rating', back_populates='user')
-    bookmarks = db.relationship('Bookmark', back_populates='user')
-    photos = db.relationship('Photo', back_populates='user')
+    #photos = db.relationship('Photo', back_populates='user')
+    #ratings = db.relationship('Rating', back_populates='user')
+    #bookmarks = db.relationship('Bookmark', back_populates='user')
+    #photos = db.relationship('Photo', back_populates='user')
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -18,13 +18,13 @@ class Recipe(db.Model):
     description = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', back_populates='recipes')
-    quantified_ingredients = db.relationship('QuantifiedIngredient', back_populates='recipe')
-    steps = db.relationship('Step', back_populates='recipe')
-    ratings = db.relationship('Rating', back_populates='recipe')
-    bookmarks = db.relationship('Bookmark', back_populates='recipe')
-    photos = db.relationship('Photo', back_populates='recipe')
+    #quantified_ingredients = db.relationship('QuantifiedIngredient', back_populates='recipe')
+    #steps = db.relationship('Step', back_populates='recipe')
+    #ratings = db.relationship('Rating', back_populates='recipe')
+    #bookmarks = db.relationship('Bookmark', back_populates='recipe')
+    #photos = db.relationship('Photo', back_populates='recipe')
 
-class Ingredient(db.Model):
+'''class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(512), nullable=False)
     quantified_ingredients = db.relationship('QuantifiedIngredient', back_populates='ingredient')
@@ -47,7 +47,7 @@ class Steps(db.Model):
 
 class Rating(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    value = db.Column(db.Integer, nullable=False) // 0 is a like, 1 is a dislike
+    value = db.Column(db.Integer, nullable=False) # 0 is a like, 1 is a dislike
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'), nullable=False)
     recipe = db.relationship('Recipe', back_populates='ratings')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -67,3 +67,4 @@ class Photo(db.Model):
     recipe = db.relationship('Recipe', back_populates='photos')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', back_populates='photos')
+    '''
