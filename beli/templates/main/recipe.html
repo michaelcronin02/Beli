@@ -5,6 +5,53 @@
         <h2>Recipe</h2> 
         {% include 'recipe_template.html' %}
     </section>
+    <section>
+            <h2>Current ratings:</h2>
+            {% set num_likes = 0 %}
+            {% set num_dislikes = 0 %}
+            {% for rating in recipe.ratings %}
+                {% if rating.value == 1 %}
+                    {% set num_likes = num_likes + 1 %}
+                {% elif rating.value == 0 %}
+                    {% set num_dislikes = num_dislikes + 1 %}
+                {% endif %}
+            {% endfor %}
+            <p>Likes: {{ num_likes }}</p>
+            <p>Dislikes: {{ num_dislikes }}</p>
+            <h2>Add a rating:</h2>
+            {% if recipe.rating %}
+                {% if recipe.rating.value == 1 %}
+                    <p>This recipe is liked!</p>
+                {% elif recipe.rating.value == 0 %}
+                    <p>This recipe is disliked!</p>
+                {% endif %}
+                <form action="{{ url_for('main.removeRating', recipe_id=recipe.id) }}" method="post">
+                    <input type="submit" value="Remove Rating">
+                </form>
+            {% else %}
+                <form action="{{ url_for('main.like', recipe_id=recipe.id) }}" method="post">
+                    <input type="submit" value="Like">
+                </form>
+                <form action="{{ url_for('main.dislike', recipe_id=recipe.id) }}" method="post">
+                    <input type="submit" value="Dislike">
+                </form>
+            {% endif %}
+        </section>
+        
+        <!--
+            <section>
+                <h2>Do you want to bookmark this recipe?</h2>
+                {% if bookmark_button == "Bookmark" %}
+                    <form action="{{ url_for('main.bookmarkRecipe', recipe_id=recipe.id) }}" method="post">
+                        <input type="submit" value="Bookmark">
+                    </form>
+                {% elif bookmark_button == "Unbookmark" %}
+                    <form action="{{ url_for('main.unbookmarkRecipe', recipe_id=recipe.id) }}" method="post">
+                        <input type="submit" value="Unbookmark">
+                    </form>
+                {% endif %}
+            </section>
+        -->
 
     {% if recipe.photos %}
     <div>
