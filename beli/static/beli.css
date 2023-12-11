@@ -1,4 +1,151 @@
 body {
+    background-color: #faf3dd;
+    text-align: left;
+}
+.site-title {
+    font-family: 'Playfair Display';
+    font-size: 40px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+  }
+
+/* User data */
+.user-data {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #555555;
+    text-align: center;
+    margin-bottom: 30px;
+
+}
+
+/* Example styling for links in the user data */
+.user-data a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.user-data a:hover {
+    text-decoration: underline;
+}
+
+.page-title {
+    font-family: 'Playfair Display';
+}
+
+/* Grid container for recipes */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+    background-color: #faf3dd; /* Add background color to the grid */
+    padding: 20px; /* Add padding to the grid */
+    border-radius: 15px; /* Add border radius to the grid */
+  }
+  
+  /* Recipe card */
+  .recipe-card{
+    background-color: #b8f2e6; /* Change the card background color */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 350px; /* Set your desired maximum width */
+  }
+  .recipe-card:hover {
+    background-color: #aed9e0; /* Change to the desired hover color */
+    transform: translateY(-5px); /* Adjust the amount of movement */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a bit more shadow on hover */
+  }
+  
+  
+  /* Recipe title */
+  .recipe-title a{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333333;
+    text-decoration: none;
+  }
+  .recipe-title a:hover {
+    text-decoration: underline;
+}
+
+  /* Recipe Author */
+  .recipe-author {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: light;
+    margin-bottom: 10px;
+    color: #333333;
+    text-decoration: none;
+  }
+  .recipe-author a{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: light;
+    margin-bottom: 10px;
+    color: #333333;
+    text-decoration: none;
+  }
+  .recipe-author a:hover {
+    text-decoration: underline;
+}
+  
+  /* Recipe description */
+  .recipe-description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555555;
+  }
+  
+  /* Recipe details */
+  .recipe-details {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #777777;
+  }
+  
+  /* Recipe image */
+  .recipe-image {
+    width: 100%;
+    height: 150px; /* Set a fixed smaller height for the recipe image */
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Recipe button */
+  .recipe-button {
+    background-color: #006d77;
+    color: #ffffff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Recipe button:hover */
+  .recipe-button:hover {
+    background-color: #a7684d;
+  }
+  
+  /* Recipe button:active */
+  .recipe-button:active {
+    background-color: #b5552c;
+  }
+  
+
+/*
+body {
     background-color: beige;
     text-align: left;
 }
@@ -49,5 +196,59 @@ h2, strong {
     font-weight: bold;
 }
 
+*/
 
 
+/* Auth form container */
+form.auth-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Input fields */
+form.auth-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+/* Submit button */
+form.auth-form input[type="submit"] {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+/* Button hover effect */
+form.auth-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+/* Notification messages */
+.notification {
+  background-color: #28a745; /* Green color for success */
+  color: #ffffff;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+/* Link to sign up */
+form.auth-form a {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #007bff;
+  text-decoration: none;
+}
+/* Link hover effect */
+form.auth-form a:hover {
+  text-decoration: underline;
+}

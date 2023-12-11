@@ -1,0 +1,78 @@
+<!--Add this to recipe_creation.html-->
+<!--new_recipe should redirect to recipe_creation.html-->
+{% extends 'base.html' %}
+
+{% block create %}
+<h2>Current Recipe Information</h2>
+
+<!-- DISPLAY CURRENT INFORMATION ON THE RECIPE -->
+<div class="message">
+    <span>
+        <div class="title">{{ recipe.title }}</div>
+        <div class="author">By: {{ recipe.user.name }}</a>
+        </div>
+    </span>
+    <div class="metadata">
+        <div class="servings">Servings: {{ recipe.servings }}</div>
+        <div class="cooktime">Cook Time: {{ recipe.cook_time }}</div>
+        <div class="ingredients">
+            Ingredients:
+            <ul>
+                {% for qi in recipe.quantified_ingredients %}
+                    <li>{{ qi.ingredient.name }} {{ qi.amount }} {{ qi.unit }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="steps">
+            Steps: 
+            <ol>
+                {% for step in steps %}
+                    <li>{{ step.description }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+    <span class="description">Description: {{ recipe.description }}</span>
+</div>
+
+<!-- FORM TO SUBMIT NEW INGREDIENTS -->
+<form action="{{ url_for('main.new_ingredient', recipe_id = recipe.id) }}" method="post">
+    <div>
+        <label>
+            Ingredient
+            <input type = "text" name = "ingredient" list = "ingredients">
+        </label>
+        <datalist id = "ingredients">
+            {% for ingredient in ingredients %}
+                <option>{{ ingredient.name }}</option>
+            {% endfor %}
+        </datalist>
+
+        <label>
+            Quantity
+            <input type = "text" name = "amount">
+            <input type = "text" name = "quantity" list = "quantities">
+        </label>
+        <datalist id = "quantities">
+            <option value = "teaspoon">
+            <option value = "tablespoon">
+            <option value = "millimeters">
+            <option value = "cup">
+            <option value = "grams">
+            <option value = "kilos">
+        </datalist>
+    </div>
+    <div><input type="submit" value="Post!"/></div>
+</form>
+
+<!-- FORM TO SUBMIT NEW STEPS -->
+<form action="{{ url_for('main.new_step', recipe_id = recipe.id) }}" method="post">
+    <div><textarea placeholder="Step" name="step"></textarea></div>
+    <div><input type="submit" value="Post!"/></div>
+</form>
+
+<!-- COMPLETED MAKING THE RECIPE BUTTON -->
+<form action="{{ url_for('main.complete_recipe', recipe_id = recipe.id) }}" method="post">
+    <div><input type="submit" value="Recipe Complete!"/></div>
+</form>
+{% endblock %}

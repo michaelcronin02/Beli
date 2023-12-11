@@ -2,7 +2,7 @@
 
 {% block content %}
     <section>
-        <h2>Latest recipes from the people you follow</h2>
+        <h2 class="page-title">Latest recipes</h2>
         {% include 'recipes_template.html' %}
     </section>
 
@@ -13,7 +13,7 @@
             <div><textarea placeholder="Description" name="description"></textarea></div>
             <div><textarea placeholder="Serving" name="servings"></textarea></div>
             <div><textarea placeholder="Cook Time" name="cook_time"></textarea></div>
-            <div><input type="submit" value="Publish!"/></div>
+            <div><input class="recipe-button" type="submit" value="Publish!"/></div>
         </form>
     </section>
 {% endblock %}
