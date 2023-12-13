@@ -19,29 +19,30 @@
         </div>
     
     {% endif %}
-
-    <section class="recipe-form-container">
-    <h2>Make a new recipe!</h2>
-    <form action="{{ url_for('main.new_recipe') }}" method="post" class="recipe-form">
-        <div class="form-group">
-            <input type="text" id="title" name="title" placeholder="Recipe name" required>
-        </div>
-        <div class="form-group">
-            <textarea id="description" name="description" placeholder="Recipe description" required></textarea>
-        </div>
-        <div class="form-group">
-            <div class="narrow-width">
-                <input type="text" id="servings" name="servings" placeholder="Serving size (e.g., 4 people)" required>
-            </div>
-            <div class="narrow-width">
-                <input type="text" id="cook_time" name="cook_time" placeholder="Cook time (e.g., 30 minutes)" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <input class="recipe-button" type="submit" value="Create!"/>
-        </div>
-    </form>
-</section>
+    <a href="{{ url_for('main.new_recipe') }}">
+        <section class="recipe-form-container">
+            <h2>Make a new recipe!</h2>
+            <form action="{{ url_for('main.new_recipe') }}" method="post" class="recipe-form">
+                <div class="form-group">
+                    <input type="text" id="title" name="title" placeholder="Recipe name" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="description" name="description" placeholder="Recipe description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="narrow-width">
+                        <input type="text" id="servings" name="servings" placeholder="Serving size (e.g., 4 people)" required>
+                    </div>
+                    <div class="narrow-width">
+                        <input type="text" id="cook_time" name="cook_time" placeholder="Cook time (e.g., 30 minutes)" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="recipe-button" type="submit" value="Create!"/>
+                </div>
+            </form>
+        </section>
+    </a>
 
     
 {% endblock %}

@@ -1,68 +1,76 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section>
-        <h2>{{ recipe.user.name }}'s Recipe</h2> 
-        {% include 'recipe_template.html' %}
-    </section>
-    <section>
-            <h2>Current ratings:</h2>
-            <div style="display: flex; align-items: center;">
-                <p class="like-text">Likes: {{ num_likes }}</p>
-                <p class="like-text">Dislikes: {{ num_dislikes }}</p>
-            </div>
-            
-            <h2>Add a rating:</h2>
-            
-            {% if rating %}
-                {% if rating.value == 1 %}
-                    <p>This recipe is liked!</p>
-                {% elif rating.value == 0 %}
-                    <p>This recipe is disliked!</p>
-                {% endif %}
-                <form action="{{ url_for('main.removeRating', recipe_id=recipe.id) }}" method="post">
-                    <input class = "recipe-button" type="submit" value="Remove Rating">
-                </form>
-            {% else %}
-                <form action="{{ url_for('main.like', recipe_id=recipe.id) }}" method="post">
-                    <input class = "recipe-button" type="submit" value="Like">
-                </form>
-                <form action="{{ url_for('main.dislike', recipe_id=recipe.id) }}" method="post">
-                    <input class = "recipe-button" type="submit" value="Dislike">
-                </form>
-            {% endif %}
+    <div class="recipe-container">
+        <section class="recipe-details-section">
+            <h2>{{ recipe.user.name }}'s Recipe</h2>
+            {% include 'recipe_template.html' %}
         </section>
-        
 
-            <section>
-                <h2>Do you want to bookmark this recipe?</h2>
-                {% if bookmark_button == "Unbookmark" %}
-                    <form action="{{ url_for('main.unbookmarkRecipe', recipe_id=recipe.id) }}" method="post">
-                            <input class = "recipe-button" type="submit" value="Unbookmark">
-                    </form>
-                {% else %}
-                    <form action="{{ url_for('main.bookmarkRecipe', recipe_id=recipe.id) }}" method="post">
-                            <input class = "recipe-button" type="submit" value="Bookmark">
-                    </form>
-                {% endif %}
-            </section>
+        <section class="side-section">
+            <h2>&#8203</h2>
+            <div class="ratings-section">
+                <h2>Current ratings</h2>
+                <div class="rating-info">
+                    <p class="like-text">Likes: {{ num_likes }}</p>
+                    <p class="like-text">Dislikes: {{ num_dislikes }}</p>
+                </div>
 
+                <h2>Add a rating!</h2>
 
-    {% if recipe.photos %}
-    <div>
-        {% for photo in recipe.photos %}
-            <h>Posted by: {{ photo.user.name }}</h>
-            <img class ="recipe-image" src="{{ url_for('static', filename='photos/photo-' ~ photo.id ~ '.' ~ photo.file_extension) }}" alt="photo">
-        {% endfor %}
-    </div>
-{% endif %}
+                {% if rating %}
+                    {% if rating.value == 1 %}
+                        <p>This recipe is liked!</p>
+                    {% elif rating.value == 0 %}
+                        <p>This recipe is disliked!</p>
+                    {% endif %}
+                    <form action="{{ url_for('main.removeRating', recipe_id=recipe.id) }}" method="post">
+                        <input class="recipe-button" type="submit" value="Remove Rating">
+                    </form>
+                {% else %}
+                    <form action="{{ url_for('main.like', recipe_id=recipe.id) }}" method="post">
+                        <input class="recipe-button" type="submit" value="Like">
+                    </form>
+                    <form action="{{ url_for('main.dislike', recipe_id=recipe.id) }}" method="post">
+                        <input class="recipe-button" type="submit" value="Dislike">
+                    </form>
+                {% endif %}
+            </div>
 
-    <section>
-        <h2>Upload a photo of this recipe!</h2>
-        <form action="{{ url_for('main.upload_photo') }}" method="post" enctype="multipart/form-data">
-                <input class="recipe-button" type="file" name="photo" accept="image/jpeg,image/png" required>
-                <input type="hidden" name="recipe_id" value="{{recipe.id}}">
-                <input class="recipe-button" type="submit" value="Post!"/>
+            <div class="bookmark-section">
+                <h2>Bookmark this recipe?</h2>
+                {% if bookmark_button == "Unbookmark" %}
+                    <form action="{{ url_for('main.unbookmarkRecipe', recipe_id=recipe.id) }}" method="post">
+                        <input class="recipe-button" type="submit" value="Unbookmark">
+                    </form>
+                {% else %}
+                    <form action="{{ url_for('main.bookmarkRecipe', recipe_id=recipe.id) }}" method="post">
+                        <input class="recipe-button" type="submit" value="Bookmark">
+                    </form>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="photo-section">
+            {% if recipe.photos %}
+                <div class="photo-grid">
+                    {% for photo in recipe.photos %}
+                        <div class="photo-card">
+                            <h3 class="user-name">Posted by
+                                <a href ="{{ url_for('main.userProfile', user_id=photo.user.id) }}">{{ photo.user.name }}</a>
+                            </h3>
+                            <img class="photo-image" src="{{ url_for('static', filename='photos/photo-' ~ photo.id ~ '.' ~ photo.file_extension) }}" alt="photo">
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <h2>Upload a photo of this recipe!</h2>
+            <form action="{{ url_for('main.upload_photo') }}" method="post" enctype="multipart/form-data">
+                <input class="recipe-button" type="file" name="photo" accept="image/jpeg,image/png" required>
+                <input type="hidden" name="recipe_id" value="{{recipe.id}}">
+                <input class="recipe-button" type="submit" value="Post!"/>
             </form>
-    </section>
+        </section>
+    </div>
 {% endblock %}
