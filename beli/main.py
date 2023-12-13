@@ -19,7 +19,7 @@ def index():
     query = (
     db.select(model.Recipe)
     .order_by(model.Recipe.id.desc())
-    .limit(8))
+    .limit(10))
     recipes = db.session.execute(query).scalars().all()
     return render_template("main/index.html", recipes=recipes)
 
@@ -309,7 +309,8 @@ def bookmarkRecipe(recipe_id):
     bookmark = model.Bookmark(user=user, recipe=recipe)
     db.session.add(bookmark)
     db.session.commit()
-    return render_template("main/recipe.html", user=user, recipe=recipe, bookmark_button="Unbookmark")
+    return redirect(url_for("main.recipe", recipe_id=recipe_id, bookmark_button="Unbookmark"))
+    # return render_template("main/recipe.html", user=user, recipe=recipe, bookmark_button="Unbookmark")
 
 @bp.route("/unbookmark_recipe/<int:recipe_id>", methods=["POST"])
 @flask_login.login_required
@@ -326,4 +327,4 @@ def unbookmarkRecipe(recipe_id):
         abort(403, "Recipe id {} is already not bookmarked.".format(recipe_id))
     db.session.delete(bookmark)
     db.session.commit()
-    return render_template("main/recipe.html", user=user, recipe=recipe, bookmark_button="Bookmark")
+    return redirect(url_for("main.recipe", recipe_id=recipe_id))

@@ -19,9 +19,9 @@
         </div>
     
     {% endif %}
-    <a href="{{ url_for('main.new_recipe') }}">
+
         <section class="recipe-form-container">
-            <h2>Make a new recipe!</h2>
+            <h2 class="sub-title">Make a new recipe!</h2>
             <form action="{{ url_for('main.new_recipe') }}" method="post" class="recipe-form">
                 <div class="form-group">
                     <input type="text" id="title" name="title" placeholder="Recipe name" required>
@@ -42,7 +42,6 @@
                 </div>
             </form>
         </section>
-    </a>
 
     
 {% endblock %}

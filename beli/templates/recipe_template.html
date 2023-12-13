@@ -1,27 +1,27 @@
 <div class="recipe-card">
     <span class="recipe-title"> 
         <a href ="{{ url_for('main.recipe', recipe_id=recipe.id) }}"> {{ recipe.title}} </a>
-        </span>
+    </span>
     <div class="recipe-author">By: 
         <a href ="{{ url_for('main.userProfile', user_id=recipe.user.id) }}"> {{ recipe.user.name }}</a>
     </div>
-      <div class="recipe-description">{{ recipe.description }}</div>
+    <div class="recipe-description">{{ recipe.description }}</div>
     <div class="recipe-details">
-        <div class="servings">Servings: {{ recipe.servings }}</div>
-        <div class="cooktime">Cook Time: {{ recipe.cook_time }}</div>
-        <div class="ingredients"> Ingredients:
+        <div class="servings"><b>Servings:</b> {{ recipe.servings }}</div>
+        <div class="cooktime"><b>Cook Time:</b> {{ recipe.cook_time }}</div>
+        <div class="ingredients"> <b>Ingredients:</b>
             <ul>
                 {% for qi in recipe.quantified_ingredients %}
                     <li>{{ qi.ingredient.name }} {{ qi.amount }} {{ qi.unit }}</li>
                 {% endfor %}
             </ul>
         </div>
-        <div class="steps">Steps: 
+        <div class="steps"><b>Steps:</b> 
             <ol>
                 {% for step in recipe.steps %}
-                <li>{{ step.description }}</li>
+                    <li>{{ step.description }}</li>
                 {% endfor %}
             </ol>
-         </div>
+        </div>
     </div>
 </div>
