@@ -5,4 +5,4 @@ BELI is a recipe sharing website!
 Michael Cronin, Eva Noel, and Kylie Azizzadeh
 
 ### Additional Functions
-We creating the ability to follow or be followed by other users.
+We created the ability to follow or be followed by other users.
