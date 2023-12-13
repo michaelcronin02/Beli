@@ -20,8 +20,8 @@ def create_app(test_config=None):
 
     #THIS DATABASE MUST BE CHANGED TO UC3M DATABASE FOR SUBMISSION
     #MUST INCLUDE FILLER RECIPES IN THIS DATABASE (25+ recipes!!!)
-    #app.config[ "SQLALCHEMY_DATABASE_URI" ] = "mysql+mysqldb://24_webapp_004:EzvZpvA2@mysql.lab.it.uc3m.es/24_webapp_004a"
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///microblog.db"
+    app.config[ "SQLALCHEMY_DATABASE_URI" ] = "mysql+mysqldb://24_webapp_004:EzvZpvA2@mysql.lab.it.uc3m.es/24_webapp_012a"
+    #app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///microblog.db"
     
     db.init_app(app)
 
