@@ -11,12 +11,16 @@
     <body>
         <header>
             <h1 class="site-title">Welcome to Beli</h1>
-            <div class="user-data">
+            <div class="site-button">
                 <a href="{{ url_for('main.index') }}">Home</a>
                 {% if current_user.is_authenticated: %}
                     <a href="{{ url_for('main.userProfile', user_id=current_user.id) }}">{{ current_user.name }}'s Profile</a>
                     <a href="{{ url_for('auth.log_out') }}">Logout</a>
                 {% endif %}
+                {% if not current_user.is_authenticated: %}
+                    <a href="{{ url_for('auth.login') }}">Log in</a>
+                {% endif %}
+                
             </div>
         </header>
         <section class="content">
@@ -30,6 +34,6 @@
         <section class = "recipeCreation">
             {% block create %}{% endblock %}
         </section>
-        <footer><small>Developed for Web applications only by Michael Cronin</small></footer>
+        <footer><small>Developed for Web applications by Michael Cronin, Eva Noel and Kylie Azizzadeh</small></footer>
     </body>
 </html>

@@ -19,7 +19,7 @@
             Ingredients:
             <ul>
                 {% for qi in recipe.quantified_ingredients %}
-                    <li>{{ qi.ingredient.name }} {{ qi.amount }} {{ qi.unit }}</li>
+                    <li>{{ qi.ingredient.name }}: {{ qi.amount }} {{ qi.unit }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -54,12 +54,12 @@
             <input type = "text" name = "quantity" list = "quantities">
         </label>
         <datalist id = "quantities">
-            <option value = "teaspoon">
-            <option value = "tablespoon">
-            <option value = "millimeters">
-            <option value = "cup">
-            <option value = "grams">
-            <option value = "kilos">
+            <option value = "teaspoon(s)">
+            <option value = "tablespoon(s)">
+            <option value = "millimeter(s)">
+            <option value = "cup(s)">
+            <option value = "gram(s)">
+            <option value = "kilo(s)">
         </datalist>
     </div>
     <div><input type="submit" value="Post!"/></div>

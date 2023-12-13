@@ -13,19 +13,19 @@ bp = Blueprint("main", __name__)
 
 
 @bp.route("/")
-@flask_login.login_required
+#@flask_login.login_required
 def index():
-    followers = db.aliased(model.User)
+    #followers = db.aliased(model.User)
     query = (
     db.select(model.Recipe)
     .order_by(model.Recipe.id.desc())
-    .limit(4))
+    .limit(8))
     recipes = db.session.execute(query).scalars().all()
     return render_template("main/index.html", recipes=recipes)
 
 
 @bp.route("/user/<int:user_id>")
-@flask_login.login_required
+#@flask_login.login_required
 def userProfile(user_id):
     user = db.session.get(model.User, user_id)
     if not user:
@@ -137,24 +137,37 @@ def complete_recipe(recipe_id):
     return redirect(url_for("main.recipe", recipe_id = recipe.id))
 
 @bp.route("/recipe/<int:recipe_id>")
-@flask_login.login_required
+#@flask_login.login_required
 def recipe(recipe_id):
     recipe = db.session.get(model.Recipe, recipe_id)
     if not recipe:
         abort(404, "Recipe id {} doesn't exist.".format(recipe_id))
-    user = flask_login.current_user
-    query = db.select(model.Rating).where((model.Rating.user_id == user.id) & (model.Rating.recipe_id == recipe_id))
-    rating = db.session.execute(query).scalars().one_or_none()
+
     query_likes = db.select(model.Rating).where((model.Rating.recipe_id==recipe.id) & (model.Rating.value==1))
     num_likes1 = db.session.execute(query_likes).scalars().all()
     query_dislikes = db.select(model.Rating).where((model.Rating.recipe_id==recipe.id) & (model.Rating.value==0))
     num_dislikes1 = db.session.execute(query_dislikes).scalars().all()
     num_likes = len(num_likes1) if isinstance(num_likes1, list) else 0
     num_dislikes = len(num_dislikes1) if isinstance(num_dislikes1, list) else 0
-    if not rating:
-        return render_template("main/recipe.html", recipe=recipe, num_likes=num_likes, num_dislikes=num_dislikes)
-    else:
-        return render_template("main/recipe.html", recipe=recipe, rating=rating, num_likes=num_likes, num_dislikes=num_dislikes)
+    
+    user = flask_login.current_user
+    if user.is_authenticated:
+        query = db.select(model.Rating).where((model.Rating.user_id == user.id) & (model.Rating.recipe_id == recipe_id))
+        query2 = db.select(model.Bookmark).where((model.Bookmark.user_id == user.id) & (model.Bookmark.recipe_id == recipe_id))
+
+        rating = db.session.execute(query).scalars().one_or_none()
+        bookmark = db.session.execute(query2).scalars().one_or_none()
+        if not rating and not bookmark:
+            return render_template("main/recipe.html", recipe=recipe, bookmark_button="Bookmark", num_likes=num_likes, num_dislikes=num_dislikes)
+        elif not rating and bookmark:
+            return render_template("main/recipe.html", recipe=recipe, bookmark_button="Unbookmark", num_likes=num_likes, num_dislikes=num_dislikes)
+        elif rating and not bookmark:
+            return render_template("main/recipe.html", recipe=recipe, rating = rating, bookmark_button="Bookmark", num_likes=num_likes, num_dislikes=num_dislikes)
+        else:
+            return render_template("main/recipe.html", recipe=recipe, rating=rating, bookmark_button="Unbookmark",num_likes=num_likes, num_dislikes=num_dislikes)
+    
+    return render_template("main/recipe.html", recipe=recipe, num_likes=num_likes, num_dislikes=num_dislikes)
+
 
 @bp.route("/follow/<int:user_id>", methods=["POST"])
 @flask_login.login_required

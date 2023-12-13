@@ -31,6 +31,7 @@ def signup_post():
     db.session.add(new_user)
     db.session.commit()
     flash("You've successfully signed up!")
+    flask_login.login_user(new_user)
     return redirect(url_for("main.index"))
 
 
